@@ -139,6 +139,14 @@ int main() {
   env["F"] = make_matrix(sigma_F, v_F);
   env["B"] = make_matrix(sigma_B, v_B);
 
+  // 180度回転も生成してマップに追加
+  env["U2"] = multiply(env["U"], env["U"]);
+  env["D2"] = multiply(env["D"], env["D"]);
+  env["L2"] = multiply(env["L"], env["L"]);
+  env["R2"] = multiply(env["R"], env["R"]);
+  env["F2"] = multiply(env["F"], env["F"]);
+  env["B2"] = multiply(env["B"], env["B"]);
+
   // 逆元も生成してマップに追加
   env["U'"] = multiply(multiply(env["U"], env["U"]), env["U"]); // Uの3回掛けはUの逆元
   env["D'"] = multiply(multiply(env["D"], env["D"]), env["D"]);
