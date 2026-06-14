@@ -139,6 +139,14 @@ int main() {
   env["F"] = make_matrix(sigma_F, v_F);
   env["B"] = make_matrix(sigma_B, v_B);
 
+  // 180度回転も生成してマップに追加
+  env["U2"] = multiply(env["U"], env["U"]);
+  env["D2"] = multiply(env["D"], env["D"]);
+  env["L2"] = multiply(env["L"], env["L"]);
+  env["R2"] = multiply(env["R"], env["R"]);
+  env["F2"] = multiply(env["F"], env["F"]);
+  env["B2"] = multiply(env["B"], env["B"]);
+
   // 逆元も生成してマップに追加
   env["U'"] = multiply(multiply(env["U"], env["U"]), env["U"]); // Uの3回掛けはUの逆元
   env["D'"] = multiply(multiply(env["D"], env["D"]), env["D"]);
@@ -153,6 +161,7 @@ int main() {
   cout << "2x2x2 ルービックキューブ群 計算電卓" << endl;
   cout << "【基本操作】 U, D, R, L, F, B" << endl;
   cout << "【逆操作】 U', D', R', L', F', B'" << endl;
+  cout << "【180度回転】 U2, D2, R2, L2, F2, B2" << endl;
   cout << "【コマンド】 save [名前], load [名前], AC (クリア)" << endl;
   cout << "※ 複数操作をスペース区切りで入力すると、左から順に計算します (例: F R B)" << endl;
   cout << "※ 群は右から順に計算するが，行列は左から順に掛けることに注意してください．" << endl;
