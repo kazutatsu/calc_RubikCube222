@@ -138,12 +138,21 @@ int main() {
   env["R"] = make_matrix(sigma_R, v_R);
   env["F"] = make_matrix(sigma_F, v_F);
   env["B"] = make_matrix(sigma_B, v_B);
+
+  // 逆元も生成してマップに追加
+  env["U'"] = multiply(multiply(env["U"], env["U"]), env["U"]); // Uの3回掛けはUの逆元
+  env["D'"] = multiply(multiply(env["D"], env["D"]), env["D"]);
+  env["L'"] = multiply(multiply(env["L"], env["L"]), env["L"]);
+  env["R'"] = multiply(multiply(env["R"], env["R"]), env["R"]);
+  env["F'"] = multiply(multiply(env["F"], env["F"]), env["F"]);
+  env["B'"] = multiply(multiply(env["B"], env["B"]), env["B"]);
   
   // 現在のキューブ状態
   CubeMatrix current = identity();
 
   cout << "2x2x2 ルービックキューブ群 計算電卓" << endl;
   cout << "【基本操作】 U, D, R, L, F, B" << endl;
+  cout << "【逆操作】 U', D', R', L', F', B'" << endl;
   cout << "【コマンド】 save [名前], load [名前], AC (クリア)" << endl;
   cout << "※ 複数操作をスペース区切りで入力すると、左から順に計算します (例: F R B)" << endl;
   cout << "※ 群は右から順に計算するが，行列は左から順に掛けることに注意してください．" << endl;
